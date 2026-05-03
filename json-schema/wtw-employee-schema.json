@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.wtwco.com/schemas/employee",
+  "title": "Employee",
+  "description": "An employee record in the WTW HR Portal",
+  "type": "object",
+  "required": ["id", "firstName", "lastName", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique employee identifier"
+    },
+    "employeeNumber": {
+      "type": "string",
+      "description": "Organization-assigned employee number"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Employee first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Employee last name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Work email address"
+    },
+    "department": {
+      "type": "string",
+      "description": "Employee department"
+    },
+    "jobTitle": {
+      "type": "string",
+      "description": "Employee job title"
+    },
+    "location": {
+      "type": "string",
+      "description": "Work location or office"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "leave"],
+      "description": "Current employment status"
+    },
+    "hireDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of hire"
+    },
+    "manager": {
+      "type": "object",
+      "description": "Direct manager reference",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+vocabulary:
+  name: Towers Watson / WTW
+  description: >-
+    Vocabulary for Willis Towers Watson (WTW) professional services APIs
+    covering human capital management, benefits administration, risk consulting,
+    and actuarial services.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+terms:
+  - term: Total Rewards
+    definition: >-
+      The complete package of compensation and benefits offered to employees,
+      including base salary, bonuses, equity, health benefits, retirement
+      contributions, and other perquisites. WTW's HR Portal communicates
+      total rewards to employees through personalized statements.
+    domain: Human Capital
+    tags:
+      - HR
+      - Compensation
+      - Benefits
+
+  - term: Benefits Administration
+    definition: >-
+      The management of employee benefit programs including enrollment, eligibility
+      tracking, carrier management, and compliance reporting for health, dental,
+      vision, life, disability, and retirement benefits.
+    domain: Human Resources
+    tags:
+      - Benefits
+      - HR
+
+  - term: HR Portal
+    definition: >-
+      WTW's digital platform that delivers a personalized employee experience for
+      total rewards communication, benefits enrollment, HR content, and service
+      case management.
+    domain: HR Technology
+    tags:
+      - HR Technology
+      - Employee Experience
+
+  - term: Employee Engagement
+    definition: >-
+      The degree to which employees feel connected to their work and organization,
+      measured and influenced through targeted communications, benefits design,
+      and recognition programs managed through WTW's platforms.
+    domain: Human Capital
+    tags:
+      - HR
+      - Employee Experience
+
+  - term: Actuarial Services
+    definition: >-
+      Mathematical and statistical analysis of financial risk, primarily used in
+      insurance pricing, pension valuation, and employee benefit plan design.
+      A core service of Towers Watson's legacy consulting practice.
+    domain: Risk Management
+    tags:
+      - Actuarial
+      - Risk Management
+
+  - term: Risk Broking
+    definition: >-
+      The placement and management of insurance policies on behalf of corporate
+      clients, a core service of Willis Group that was combined with Towers Watson's
+      consulting expertise to form WTW.
+    domain: Insurance
+    tags:
+      - Insurance
+      - Risk Management
+
+  - term: Case Management
+    definition: >-
+      The tracking and resolution of HR service requests and employee inquiries
+      through the WTW HR Portal, enabling HR teams to manage employee questions
+      about benefits, payroll, and policies.
+    domain: HR Operations
+    tags:
+      - HR Operations
+      - Employee Experience
+
+  - term: Coverage Level
+    definition: >-
+      The scope of insurance coverage under an employee benefits plan, typically
+      expressed as Employee Only, Employee + Spouse, Employee + Children, or Family.
+    domain: Benefits
+    tags:
+      - Benefits
+      - Health Insurance
+
+  - term: Open Enrollment
+    definition: >-
+      The annual period during which employees can change their benefits elections
+      for the coming plan year. Managed through WTW Benefits Administration platforms.
+    domain: Benefits
+    tags:
+      - Benefits
+      - HR
+
+  - term: Human Capital and Benefits
+    definition: >-
+      One of WTW's four business segments providing HR technology, benefits
+      consulting, talent management, and employee rewards strategy services.
+    domain: WTW Business
+    tags:
+      - WTW
+      - Human Capital
+
+  - term: Willis Towers Watson
+    definition: >-
+      Global professional services firm formed in 2016 by the merger of Willis Group
+      (insurance brokerage) and Towers Watson (HR consulting). Now operating as WTW.
+    domain: Corporate History
+    tags:
+      - Corporate
+
+categories:
+  - name: Human Capital
+    description: Workforce and compensation management concepts
+    terms:
+      - Total Rewards
+      - Employee Engagement
+      - Human Capital and Benefits
+  - name: Benefits Administration
+    description: Employee benefits program management
+    terms:
+      - Benefits Administration
+      - Coverage Level
+      - Open Enrollment
+  - name: HR Technology
+    description: Digital HR platform concepts
+    terms:
+      - HR Portal
+      - Case Management
+  - name: Risk and Insurance
+    description: Risk consulting and insurance brokerage concepts
+    terms:
+      - Actuarial Services
+      - Risk Broking
+  - name: Corporate
+    description: Company history and branding
+    terms:
+      - Willis Towers Watson

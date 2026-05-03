@@ -1,0 +1,210 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "WTW Employee Experience"
+  description: "Workflow capability for HR teams and employees using the WTW HR Portal. Combines employee profile management, total rewards communication, benefits enrollment tracking, HR content delivery, and case management to create a unified digital HR experience."
+  tags:
+    - Human Resources
+    - Employee Experience
+    - Benefits
+    - Total Rewards
+    - HR Technology
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WTW_HR_PORTAL_TOKEN: WTW_HR_PORTAL_TOKEN
+
+capability:
+  consumes:
+    - import: wtw-hr-portal
+      location: ./shared/hr-portal.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wtw-employee-api
+      description: "Unified REST API for WTW employee digital experience management."
+      resources:
+        - path: /v1/employees
+          name: employees
+          description: "Employee management"
+          operations:
+            - method: GET
+              name: list-employees
+              description: "List all employees"
+              call: "wtw-hr-portal.list-employees"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employees/{employeeId}
+          name: employee
+          description: "Individual employee"
+          operations:
+            - method: GET
+              name: get-employee
+              description: "Get employee profile"
+              call: "wtw-hr-portal.get-employee"
+              with:
+                employeeId: "rest.employeeId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employees/{employeeId}/total-rewards
+          name: total-rewards
+          description: "Total compensation and rewards"
+          operations:
+            - method: GET
+              name: get-employee-total-rewards
+              description: "Get total rewards statement"
+              call: "wtw-hr-portal.get-employee-total-rewards"
+              with:
+                employeeId: "rest.employeeId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employees/{employeeId}/benefits
+          name: employee-benefits
+          description: "Employee benefits enrollment"
+          operations:
+            - method: GET
+              name: get-employee-benefits
+              description: "Get benefits summary"
+              call: "wtw-hr-portal.get-employee-benefits"
+              with:
+                employeeId: "rest.employeeId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/content
+          name: content
+          description: "HR content and communications"
+          operations:
+            - method: GET
+              name: list-content
+              description: "List HR content"
+              call: "wtw-hr-portal.list-content"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-content
+              description: "Create HR content"
+              call: "wtw-hr-portal.create-content"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/cases
+          name: cases
+          description: "HR service cases"
+          operations:
+            - method: GET
+              name: list-cases
+              description: "List HR cases"
+              call: "wtw-hr-portal.list-cases"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-case
+              description: "Create a new case"
+              call: "wtw-hr-portal.create-case"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wtw-employee-mcp
+      transport: http
+      description: "MCP server for AI-assisted WTW HR employee experience workflows."
+      tools:
+        - name: list-employees
+          description: "List all employees in the HR portal with optional department and status filters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wtw-hr-portal.list-employees"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-employee
+          description: "Get HR portal profile for a specific employee"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "wtw-hr-portal.get-employee"
+          with:
+            employeeId: "tools.employeeId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-total-rewards
+          description: "Get total compensation and rewards statement for an employee"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "wtw-hr-portal.get-employee-total-rewards"
+          with:
+            employeeId: "tools.employeeId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-benefits-enrollment
+          description: "Get current benefits enrollment summary for an employee"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "wtw-hr-portal.get-employee-benefits"
+          with:
+            employeeId: "tools.employeeId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-hr-content
+          description: "List HR content articles, announcements, and policies"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wtw-hr-portal.list-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish-hr-content
+          description: "Create and publish a new HR content item or announcement"
+          hints:
+            readOnly: false
+          call: "wtw-hr-portal.create-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-hr-cases
+          description: "List HR service cases with optional status and category filters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wtw-hr-portal.list-cases"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: submit-hr-case
+          description: "Submit a new HR service case or employee inquiry"
+          hints:
+            readOnly: false
+          call: "wtw-hr-portal.create-case"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-hr-case
+          description: "Get details and status for a specific HR service case"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "wtw-hr-portal.get-case"
+          with:
+            caseId: "tools.caseId"
+          outputParameters:
+            - type: object
+              mapping: "$."

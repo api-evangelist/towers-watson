@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "wtw": "https://api.wtwco.com/vocab#",
+    "hr": "https://www.wtwco.com/hr-ontology#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Employee": "schema:Person",
+    "id": "@id",
+    "employeeNumber": "wtw:employeeNumber",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "email": "schema:workEmail",
+    "department": "schema:department",
+    "jobTitle": "schema:jobTitle",
+    "location": "schema:workLocation",
+    "status": "wtw:employmentStatus",
+    "hireDate": "schema:startDate",
+    "manager": "schema:reportsTo",
+
+    "TotalRewards": "wtw:TotalRewardsStatement",
+    "planYear": "wtw:planYear",
+    "baseSalary": "schema:baseSalary",
+    "bonus": "wtw:bonusCompensation",
+    "equity": "wtw:equityCompensation",
+    "totalCompensation": "wtw:totalCompensation",
+    "currency": "schema:priceCurrency",
+
+    "BenefitEnrollment": "schema:Permit",
+    "planType": "wtw:benefitPlanType",
+    "planName": "schema:name",
+    "enrollmentStatus": "wtw:enrollmentStatus",
+    "coverageLevel": "wtw:coverageLevel",
+    "employeeContribution": "wtw:employeeContribution",
+    "employerContribution": "wtw:employerContribution",
+    "effectiveDate": "schema:validFrom",
+
+    "HRContent": "schema:CreativeWork",
+    "title": "schema:name",
+    "body": "schema:text",
+    "audience": "schema:audience",
+    "publishedAt": "schema:datePublished",
+
+    "HRCase": "schema:Action",
+    "caseNumber": "schema:identifier",
+    "category": "schema:additionalType",
+    "subject": "schema:name",
+    "description": "schema:description",
+    "priority": "wtw:casePriority",
+    "assignedTo": "schema:agent",
+    "resolvedAt": "schema:endTime"
+  }
+}

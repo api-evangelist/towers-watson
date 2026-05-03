@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.wtwco.com/hrportal/v1/employees/emp_001234/total-rewards?year=2026",
+    "headers": {
+      "Authorization": "Bearer {token}",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "employeeId": "emp_001234",
+      "planYear": 2026,
+      "baseSalary": 95000.00,
+      "bonus": 12000.00,
+      "equity": 8500.00,
+      "benefits": {
+        "healthInsurance": 7800.00,
+        "dental": 960.00,
+        "vision": 180.00,
+        "retirement": 5700.00,
+        "other": 1200.00
+      },
+      "totalCompensation": 131340.00,
+      "currency": "USD"
+    }
+  }
+}
