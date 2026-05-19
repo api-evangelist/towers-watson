@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WTW HR Portal — Content
+  description: 'WTW HR Portal — Content. 4 operations. Lead operation: List Content. Self-contained Naftiko capability covering
+    one Towers Watson business surface.'
+  tags:
+  - Towers Watson
+  - Content
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOWERS_WATSON_API_KEY: TOWERS_WATSON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wtw-hr-portal-content
+    baseUri: https://api.wtwco.com/hrportal/v1
+    description: WTW HR Portal — Content business capability. Self-contained, no shared references.
+    resources:
+    - name: content
+      path: /content
+      operations:
+      - name: listcontent
+        method: GET
+        description: List Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filter by content type
+        - name: audience
+          in: query
+          type: string
+          description: Filter by target audience segment
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: createcontent
+        method: POST
+        description: Create Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: content-contentId
+      path: /content/{contentId}
+      operations:
+      - name: getcontent
+        method: GET
+        description: Get Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contentId
+          in: path
+          type: string
+          required: true
+      - name: updatecontent
+        method: PUT
+        description: Update Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contentId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TOWERS_WATSON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wtw-hr-portal-content-rest
+    port: 8080
+    description: REST adapter for WTW HR Portal — Content. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/content
+      name: content
+      description: REST surface for content.
+      operations:
+      - method: GET
+        name: listcontent
+        description: List Content
+        call: wtw-hr-portal-content.listcontent
+        with:
+          type: rest.type
+          audience: rest.audience
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcontent
+        description: Create Content
+        call: wtw-hr-portal-content.createcontent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/content/{contentid}
+      name: content-contentid
+      description: REST surface for content-contentId.
+      operations:
+      - method: GET
+        name: getcontent
+        description: Get Content
+        call: wtw-hr-portal-content.getcontent
+        with:
+          contentId: rest.contentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecontent
+        description: Update Content
+        call: wtw-hr-portal-content.updatecontent
+        with:
+          contentId: rest.contentId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wtw-hr-portal-content-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WTW HR Portal — Content. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-content
+      description: List Content
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-content.listcontent
+      with:
+        type: tools.type
+        audience: tools.audience
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-content
+      description: Create Content
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: wtw-hr-portal-content.createcontent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-content
+      description: Get Content
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-content.getcontent
+      with:
+        contentId: tools.contentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-content
+      description: Update Content
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-content.updatecontent
+      with:
+        contentId: tools.contentId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WTW HR Portal — Cases
+  description: 'WTW HR Portal — Cases. 4 operations. Lead operation: List Cases. Self-contained Naftiko capability covering
+    one Towers Watson business surface.'
+  tags:
+  - Towers Watson
+  - Cases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOWERS_WATSON_API_KEY: TOWERS_WATSON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wtw-hr-portal-cases
+    baseUri: https://api.wtwco.com/hrportal/v1
+    description: WTW HR Portal — Cases business capability. Self-contained, no shared references.
+    resources:
+    - name: cases
+      path: /cases
+      operations:
+      - name: listcases
+        method: GET
+        description: List Cases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by case status
+        - name: category
+          in: query
+          type: string
+          description: Filter by case category
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: createcase
+        method: POST
+        description: Create Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cases-caseId
+      path: /cases/{caseId}
+      operations:
+      - name: getcase
+        method: GET
+        description: Get Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: caseId
+          in: path
+          type: string
+          required: true
+      - name: updatecase
+        method: PUT
+        description: Update Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: caseId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TOWERS_WATSON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wtw-hr-portal-cases-rest
+    port: 8080
+    description: REST adapter for WTW HR Portal — Cases. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/cases
+      name: cases
+      description: REST surface for cases.
+      operations:
+      - method: GET
+        name: listcases
+        description: List Cases
+        call: wtw-hr-portal-cases.listcases
+        with:
+          status: rest.status
+          category: rest.category
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcase
+        description: Create Case
+        call: wtw-hr-portal-cases.createcase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cases/{caseid}
+      name: cases-caseid
+      description: REST surface for cases-caseId.
+      operations:
+      - method: GET
+        name: getcase
+        description: Get Case
+        call: wtw-hr-portal-cases.getcase
+        with:
+          caseId: rest.caseId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecase
+        description: Update Case
+        call: wtw-hr-portal-cases.updatecase
+        with:
+          caseId: rest.caseId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wtw-hr-portal-cases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WTW HR Portal — Cases. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-cases
+      description: List Cases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-cases.listcases
+      with:
+        status: tools.status
+        category: tools.category
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-case
+      description: Create Case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: wtw-hr-portal-cases.createcase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case
+      description: Get Case
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-cases.getcase
+      with:
+        caseId: tools.caseId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-case
+      description: Update Case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-cases.updatecase
+      with:
+        caseId: tools.caseId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

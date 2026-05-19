@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WTW HR Portal — Employees
+  description: 'WTW HR Portal — Employees. 4 operations. Lead operation: List Employees. Self-contained Naftiko capability
+    covering one Towers Watson business surface.'
+  tags:
+  - Towers Watson
+  - Employees
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOWERS_WATSON_API_KEY: TOWERS_WATSON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wtw-hr-portal-employees
+    baseUri: https://api.wtwco.com/hrportal/v1
+    description: WTW HR Portal — Employees business capability. Self-contained, no shared references.
+    resources:
+    - name: employees
+      path: /employees
+      operations:
+      - name: listemployees
+        method: GET
+        description: List Employees
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: department
+          in: query
+          type: string
+          description: Filter by department
+        - name: status
+          in: query
+          type: string
+          description: Filter by employment status
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+    - name: employees-employeeId
+      path: /employees/{employeeId}
+      operations:
+      - name: getemployee
+        method: GET
+        description: Get Employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: employeeId
+          in: path
+          type: string
+          description: Employee identifier
+          required: true
+    - name: employees-employeeId-benefits
+      path: /employees/{employeeId}/benefits
+      operations:
+      - name: getemployeebenefits
+        method: GET
+        description: Get Employee Benefits
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: employeeId
+          in: path
+          type: string
+          required: true
+        - name: planYear
+          in: query
+          type: integer
+          description: Benefits plan year
+    - name: employees-employeeId-total-rewards
+      path: /employees/{employeeId}/total-rewards
+      operations:
+      - name: getemployeetotalrewards
+        method: GET
+        description: Get Employee Total Rewards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: employeeId
+          in: path
+          type: string
+          required: true
+        - name: year
+          in: query
+          type: integer
+          description: Plan year (defaults to current year)
+    authentication:
+      type: bearer
+      token: '{{env.TOWERS_WATSON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wtw-hr-portal-employees-rest
+    port: 8080
+    description: REST adapter for WTW HR Portal — Employees. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/employees
+      name: employees
+      description: REST surface for employees.
+      operations:
+      - method: GET
+        name: listemployees
+        description: List Employees
+        call: wtw-hr-portal-employees.listemployees
+        with:
+          department: rest.department
+          status: rest.status
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/employees/{employeeid}
+      name: employees-employeeid
+      description: REST surface for employees-employeeId.
+      operations:
+      - method: GET
+        name: getemployee
+        description: Get Employee
+        call: wtw-hr-portal-employees.getemployee
+        with:
+          employeeId: rest.employeeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/employees/{employeeid}/benefits
+      name: employees-employeeid-benefits
+      description: REST surface for employees-employeeId-benefits.
+      operations:
+      - method: GET
+        name: getemployeebenefits
+        description: Get Employee Benefits
+        call: wtw-hr-portal-employees.getemployeebenefits
+        with:
+          employeeId: rest.employeeId
+          planYear: rest.planYear
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/employees/{employeeid}/total-rewards
+      name: employees-employeeid-total-rewards
+      description: REST surface for employees-employeeId-total-rewards.
+      operations:
+      - method: GET
+        name: getemployeetotalrewards
+        description: Get Employee Total Rewards
+        call: wtw-hr-portal-employees.getemployeetotalrewards
+        with:
+          employeeId: rest.employeeId
+          year: rest.year
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wtw-hr-portal-employees-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WTW HR Portal — Employees. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-employees
+      description: List Employees
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-employees.listemployees
+      with:
+        department: tools.department
+        status: tools.status
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee
+      description: Get Employee
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-employees.getemployee
+      with:
+        employeeId: tools.employeeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee-benefits
+      description: Get Employee Benefits
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-employees.getemployeebenefits
+      with:
+        employeeId: tools.employeeId
+        planYear: tools.planYear
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee-total-rewards
+      description: Get Employee Total Rewards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-employees.getemployeetotalrewards
+      with:
+        employeeId: tools.employeeId
+        year: tools.year
+      outputParameters:
+      - type: object
+        mapping: $.

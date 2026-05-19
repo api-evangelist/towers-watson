@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WTW HR Portal — Total Rewards
+  description: 'WTW HR Portal — Total Rewards. 1 operations. Lead operation: Get Employee Total Rewards. Self-contained Naftiko
+    capability covering one Towers Watson business surface.'
+  tags:
+  - Towers Watson
+  - Total Rewards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOWERS_WATSON_API_KEY: TOWERS_WATSON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wtw-hr-portal-total-rewards
+    baseUri: https://api.wtwco.com/hrportal/v1
+    description: WTW HR Portal — Total Rewards business capability. Self-contained, no shared references.
+    resources:
+    - name: employees-employeeId-total-rewards
+      path: /employees/{employeeId}/total-rewards
+      operations:
+      - name: getemployeetotalrewards
+        method: GET
+        description: Get Employee Total Rewards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: employeeId
+          in: path
+          type: string
+          required: true
+        - name: year
+          in: query
+          type: integer
+          description: Plan year (defaults to current year)
+    authentication:
+      type: bearer
+      token: '{{env.TOWERS_WATSON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wtw-hr-portal-total-rewards-rest
+    port: 8080
+    description: REST adapter for WTW HR Portal — Total Rewards. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/employees/{employeeid}/total-rewards
+      name: employees-employeeid-total-rewards
+      description: REST surface for employees-employeeId-total-rewards.
+      operations:
+      - method: GET
+        name: getemployeetotalrewards
+        description: Get Employee Total Rewards
+        call: wtw-hr-portal-total-rewards.getemployeetotalrewards
+        with:
+          employeeId: rest.employeeId
+          year: rest.year
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wtw-hr-portal-total-rewards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WTW HR Portal — Total Rewards. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-employee-total-rewards
+      description: Get Employee Total Rewards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wtw-hr-portal-total-rewards.getemployeetotalrewards
+      with:
+        employeeId: tools.employeeId
+        year: tools.year
+      outputParameters:
+      - type: object
+        mapping: $.
