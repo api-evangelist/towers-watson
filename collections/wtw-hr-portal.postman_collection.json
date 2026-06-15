@@ -1,0 +1,2098 @@
+{
+  "item": [
+    {
+      "id": "6781ae6d-02df-4867-b96e-c46652c98889",
+      "name": "Employees",
+      "description": {
+        "content": "Employee profile and engagement management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a11d856a-198b-4a77-bd63-5428c5fec035",
+          "name": "List Employees",
+          "request": {
+            "name": "List Employees",
+            "description": {
+              "content": "Returns a paginated list of employee records in the HR portal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "department",
+                  "value": "<string>",
+                  "description": "Filter by department"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by employment status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8afe16be-00af-43b5-ac90-6e6281ff08a2",
+              "name": "Employee list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "department",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"employeeNumber\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"Dt8QC438OX@pLDgzsKIbbvFnycRVCETSQvrJiQkgTAqP.wdmn\",\n      \"department\": \"string\",\n      \"jobTitle\": \"string\",\n      \"location\": \"string\",\n      \"status\": \"leave\",\n      \"hireDate\": \"1986-04-21\",\n      \"manager\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"employeeNumber\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"Va7z4@SShZwgNLoZmVXzQYWfHV.ws\",\n      \"department\": \"string\",\n      \"jobTitle\": \"string\",\n      \"location\": \"string\",\n      \"status\": \"inactive\",\n      \"hireDate\": \"1946-10-06\",\n      \"manager\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"total\": 2253,\n  \"page\": 6868,\n  \"limit\": 4266\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "623d57d9-b1c3-48f3-8169-7ffbd578c031",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "department",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "837dbfa1-671c-44c7-a688-6cfa571efb8c",
+          "name": "Get Employee",
+          "request": {
+            "name": "Get Employee",
+            "description": {
+              "content": "Retrieve HR portal profile for a specific employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Employee identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2009342d-cfbf-43b0-abba-68c640fedb53",
+              "name": "Employee profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"employeeNumber\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"email\": \"CdRdHDtn4RLl@MdmNIQaTKrPyEenpzB.sriy\",\n  \"department\": \"string\",\n  \"jobTitle\": \"string\",\n  \"location\": \"string\",\n  \"status\": \"active\",\n  \"hireDate\": \"2021-04-02\",\n  \"manager\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f57440d-42eb-4113-9647-0ab8e8023685",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8af2a12-9396-407c-bc40-b5209793316f",
+          "name": "Get Employee Total Rewards",
+          "request": {
+            "name": "Get Employee Total Rewards",
+            "description": {
+              "content": "Returns the total compensation and rewards summary for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "total-rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Plan year (defaults to current year)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eecf3e49-2e85-4422-a499-368550a1ffec",
+              "name": "Total rewards statement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "total-rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeId\": \"string\",\n  \"planYear\": 1006,\n  \"baseSalary\": 7027.753459589951,\n  \"bonus\": 5730.808643177703,\n  \"equity\": 3710.122272617589,\n  \"benefits\": {\n    \"healthInsurance\": 992.7742056097588,\n    \"dental\": 3310.349372881353,\n    \"vision\": 8719.937280380398,\n    \"retirement\": 6909.085486443231,\n    \"other\": 9956.047396179847\n  },\n  \"totalCompensation\": 6023.7180914243645,\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc6c878d-1c96-4148-953e-50b4c2cedcb9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "total-rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01e403ee-3147-454d-a5ba-b9d062942506",
+          "name": "Get Employee Benefits",
+          "request": {
+            "name": "Get Employee Benefits",
+            "description": {
+              "content": "Returns current benefits enrollment summary for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "benefits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "planYear",
+                  "value": "<integer>",
+                  "description": "Benefits plan year"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c1af872-7aa9-48fd-a6ff-cbc54e824dd6",
+              "name": "Benefits summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "benefits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeId\": \"string\",\n  \"planYear\": 3067,\n  \"enrollments\": [\n    {\n      \"planType\": \"medical\",\n      \"planName\": \"string\",\n      \"status\": \"waived\",\n      \"coverageLevel\": \"string\",\n      \"employeeContribution\": 2188.6012985954217,\n      \"employerContribution\": 1571.245111299332,\n      \"effectiveDate\": \"1997-02-01\"\n    },\n    {\n      \"planType\": \"vision\",\n      \"planName\": \"string\",\n      \"status\": \"waived\",\n      \"coverageLevel\": \"string\",\n      \"employeeContribution\": 262.16478729860995,\n      \"employerContribution\": 4125.653100991776,\n      \"effectiveDate\": \"1981-08-06\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "228badf8-dfdd-4742-9d92-adff6c99e085",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "benefits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "125abb2c-cd75-41d5-a857-8a2393f149bf",
+      "name": "Content",
+      "description": {
+        "content": "HR content and communications management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "067d60d4-ba50-4cb8-a680-00035ee26f56",
+          "name": "List Content",
+          "request": {
+            "name": "List Content",
+            "description": {
+              "content": "Returns a list of HR content articles and communications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by content type"
+                },
+                {
+                  "disabled": false,
+                  "key": "audience",
+                  "value": "<string>",
+                  "description": "Filter by target audience segment"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c49e6739-8d19-48fa-8b7d-734fa021b9da",
+              "name": "Content list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "audience",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"form\",\n      \"body\": \"string\",\n      \"audience\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"archived\",\n      \"publishedAt\": \"1956-08-03T05:56:11.123Z\",\n      \"createdAt\": \"1950-10-14T14:38:59.573Z\",\n      \"updatedAt\": \"1967-05-11T21:19:15.352Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"announcement\",\n      \"body\": \"string\",\n      \"audience\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"draft\",\n      \"publishedAt\": \"2025-07-20T17:18:52.030Z\",\n      \"createdAt\": \"1958-01-18T23:55:30.756Z\",\n      \"updatedAt\": \"1990-11-14T23:09:43.529Z\"\n    }\n  ],\n  \"total\": 1121,\n  \"page\": 2917,\n  \"limit\": 4305\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3f198ec-ef86-48c0-962a-c3bdcec78e7b",
+          "name": "Create Content",
+          "request": {
+            "name": "Create Content",
+            "description": {
+              "content": "Create a new HR content item or communication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"body\": \"<string>\",\n  \"audience\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c551d6c-5caf-43ca-86a9-0347096ec4ad",
+              "name": "Content created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"body\": \"<string>\",\n  \"audience\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"video\",\n  \"body\": \"string\",\n  \"audience\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"draft\",\n  \"publishedAt\": \"1986-01-13T11:37:55.512Z\",\n  \"createdAt\": \"1956-03-20T03:26:09.385Z\",\n  \"updatedAt\": \"2013-07-11T08:45:27.889Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f732384-8c02-422f-b8ac-6d81e7190008",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"body\": \"<string>\",\n  \"audience\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "833810c1-d0af-4bfe-a4ca-506f3f8c342e",
+          "name": "Get Content",
+          "request": {
+            "name": "Get Content",
+            "description": {
+              "content": "Retrieve a specific content item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content",
+                ":contentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "775b057d-1d22-4c84-8fad-5eab259f9f0d",
+              "name": "Content item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":contentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"video\",\n  \"body\": \"string\",\n  \"audience\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"draft\",\n  \"publishedAt\": \"1986-01-13T11:37:55.512Z\",\n  \"createdAt\": \"1956-03-20T03:26:09.385Z\",\n  \"updatedAt\": \"2013-07-11T08:45:27.889Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45b91721-8944-45da-9c46-02abc06e50bc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":contentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9cfecb6-fc0f-40f3-bddd-73c6d02d761d",
+          "name": "Update Content",
+          "request": {
+            "name": "Update Content",
+            "description": {
+              "content": "Update an existing content item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content",
+                ":contentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"body\": \"<string>\",\n  \"audience\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "423a7d02-fd51-411b-a62a-c335798ffee7",
+              "name": "Content updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":contentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"body\": \"<string>\",\n  \"audience\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"video\",\n  \"body\": \"string\",\n  \"audience\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"draft\",\n  \"publishedAt\": \"1986-01-13T11:37:55.512Z\",\n  \"createdAt\": \"1956-03-20T03:26:09.385Z\",\n  \"updatedAt\": \"2013-07-11T08:45:27.889Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e33cfccd-3f7d-48c2-9f07-86eac5a17595",
+      "name": "Benefits",
+      "description": {
+        "content": "Benefits summary and enrollment status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f1171eb-56b7-47bf-97df-76c799e93085",
+          "name": "Get Employee Benefits",
+          "request": {
+            "name": "Get Employee Benefits",
+            "description": {
+              "content": "Returns current benefits enrollment summary for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "benefits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "planYear",
+                  "value": "<integer>",
+                  "description": "Benefits plan year"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1d605de-9f13-40c1-a4a2-acbb3e912f69",
+              "name": "Benefits summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "benefits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeId\": \"string\",\n  \"planYear\": 6762,\n  \"enrollments\": [\n    {\n      \"planType\": \"disability\",\n      \"planName\": \"string\",\n      \"status\": \"pending\",\n      \"coverageLevel\": \"string\",\n      \"employeeContribution\": 7835.33895806079,\n      \"employerContribution\": 6645.230306686124,\n      \"effectiveDate\": \"1976-03-29\"\n    },\n    {\n      \"planType\": \"dental\",\n      \"planName\": \"string\",\n      \"status\": \"pending\",\n      \"coverageLevel\": \"string\",\n      \"employeeContribution\": 8770.418348010362,\n      \"employerContribution\": 6454.664054168118,\n      \"effectiveDate\": \"1966-08-26\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5a1837d-bc0b-4b95-a98f-7c6ebe24f5cd",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "benefits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cb141b25-8862-4d11-89d0-e59cbddcd186",
+      "name": "Cases",
+      "description": {
+        "content": "HR service case management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1540dcbf-cd29-43fb-a23c-bae299624fe4",
+          "name": "List Cases",
+          "request": {
+            "name": "List Cases",
+            "description": {
+              "content": "Returns a list of HR service cases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by case status"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by case category"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6930b85-bd23-4d2f-b257-3fab69af82da",
+              "name": "Case list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"caseNumber\": \"string\",\n      \"employeeId\": \"string\",\n      \"category\": \"string\",\n      \"subject\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"open\",\n      \"priority\": \"high\",\n      \"assignedTo\": \"string\",\n      \"createdAt\": \"1966-11-14T22:44:38.655Z\",\n      \"updatedAt\": \"1989-09-29T22:15:23.895Z\",\n      \"resolvedAt\": \"1960-06-19T18:03:42.501Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"caseNumber\": \"string\",\n      \"employeeId\": \"string\",\n      \"category\": \"string\",\n      \"subject\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"open\",\n      \"priority\": \"medium\",\n      \"assignedTo\": \"string\",\n      \"createdAt\": \"1989-04-06T22:35:29.304Z\",\n      \"updatedAt\": \"2024-12-19T04:13:37.386Z\",\n      \"resolvedAt\": \"1998-05-20T05:36:40.761Z\"\n    }\n  ],\n  \"total\": 6158,\n  \"page\": 1781,\n  \"limit\": 9788\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3744b860-0a56-464f-b009-3d35a67e6426",
+          "name": "Create Case",
+          "request": {
+            "name": "Create Case",
+            "description": {
+              "content": "Submit a new HR service case or inquiry.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeId\": \"<string>\",\n  \"category\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccf2fbc3-da50-4b76-86e3-8704f8df820c",
+              "name": "Case created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"<string>\",\n  \"category\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"caseNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"category\": \"string\",\n  \"subject\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignedTo\": \"string\",\n  \"createdAt\": \"1996-07-02T11:36:05.565Z\",\n  \"updatedAt\": \"1960-11-08T07:51:45.809Z\",\n  \"resolvedAt\": \"1998-08-18T11:09:23.345Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7234a045-a4bf-4d34-bf78-2da5a8fa0fc4",
+          "name": "Get Case",
+          "request": {
+            "name": "Get Case",
+            "description": {
+              "content": "Retrieve a specific HR service case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases",
+                ":caseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "caseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edebb9ab-9039-4d08-81ad-b68465b25051",
+              "name": "Case details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"caseNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"category\": \"string\",\n  \"subject\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignedTo\": \"string\",\n  \"createdAt\": \"1996-07-02T11:36:05.565Z\",\n  \"updatedAt\": \"1960-11-08T07:51:45.809Z\",\n  \"resolvedAt\": \"1998-08-18T11:09:23.345Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06ce1a76-639f-4ba5-a0d0-d2d121af107b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10e9803d-8b26-4936-97dc-ad8a847b3517",
+          "name": "Update Case",
+          "request": {
+            "name": "Update Case",
+            "description": {
+              "content": "Update an existing HR service case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cases",
+                ":caseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "caseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"assignedTo\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e4cb84b-6f44-4a45-88b9-a08efae070e2",
+              "name": "Case updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "caseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"assignedTo\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"caseNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"category\": \"string\",\n  \"subject\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignedTo\": \"string\",\n  \"createdAt\": \"1996-07-02T11:36:05.565Z\",\n  \"updatedAt\": \"1960-11-08T07:51:45.809Z\",\n  \"resolvedAt\": \"1998-08-18T11:09:23.345Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b92f9862-a79c-48aa-8bd3-dcc9214cfd14",
+      "name": "Total Rewards",
+      "description": {
+        "content": "Total compensation and rewards statements",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32d3f530-005f-4a45-b4a2-bad820871f16",
+          "name": "Get Employee Total Rewards",
+          "request": {
+            "name": "Get Employee Total Rewards",
+            "description": {
+              "content": "Returns the total compensation and rewards summary for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "total-rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Plan year (defaults to current year)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67fd9de9-5873-4289-bbac-f541aa51c4a3",
+              "name": "Total rewards statement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "total-rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeId\": \"string\",\n  \"planYear\": 1006,\n  \"baseSalary\": 7027.753459589951,\n  \"bonus\": 5730.808643177703,\n  \"equity\": 3710.122272617589,\n  \"benefits\": {\n    \"healthInsurance\": 992.7742056097588,\n    \"dental\": 3310.349372881353,\n    \"vision\": 8719.937280380398,\n    \"retirement\": 6909.085486443231,\n    \"other\": 9956.047396179847\n  },\n  \"totalCompensation\": 6023.7180914243645,\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74ceddbc-cbae-4fd5-80d0-783a053c8b28",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "total-rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wtwco.com/hrportal/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "914ce071-598d-437b-acd8-6ae8fbc4ed69",
+    "name": "WTW HR Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.\n\nContact Support:\n Name: Willis Towers Watson",
+      "type": "text/plain"
+    }
+  }
+}
