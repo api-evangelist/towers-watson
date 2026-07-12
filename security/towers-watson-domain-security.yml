@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.wtwco.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 25 06:40:43 2026 GMT
+  hsts: null
+- host: api.wtwco.com
+  https: false
+domains:
+- domain: wtwco.com
+  dnssec: false
+  caa:
+  - 0 issue "digicert.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "globalsign.com"
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
