@@ -38,6 +38,8 @@ apis:
       management, plan configuration, and benefits data for health, dental, vision, life, disability, and other employee
       benefit programs.
 common:
+  - type: AgenticAccess
+    url: agentic-access/towers-watson-agentic-access.yml
   - type: DomainSecurity
     url: security/towers-watson-domain-security.yml
   - type: Authentication
