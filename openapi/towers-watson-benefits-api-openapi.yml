@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: WTW HR Portal Benefits API
+  description: Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.
+  version: 1.0.0
+  contact:
+    name: Willis Towers Watson
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+servers:
+- url: https://api.wtwco.com/hrportal/v1
+  description: WTW HR Portal API
+security:
+- bearerAuth: []
+tags:
+- name: Benefits
+  description: Benefits summary and enrollment status
+paths:
+  /employees/{employeeId}/benefits:
+    get:
+      operationId: getEmployeeBenefits
+      summary: Get Employee Benefits
+      description: Returns current benefits enrollment summary for an employee.
+      tags:
+      - Benefits
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: planYear
+        in: query
+        schema:
+          type: integer
+        description: Benefits plan year
+      responses:
+        '200':
+          description: Benefits summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitsSummary'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    BenefitsSummary:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        planYear:
+          type: integer
+        enrollments:
+          type: array
+          items:
+            type: object
+            properties:
+              planType:
+                type: string
+                enum:
+                - medical
+                - dental
+                - vision
+                - life
+                - disability
+                - hsa
+                - 401k
+                - other
+              planName:
+                type: string
+              status:
+                type: string
+                enum:
+                - active
+                - waived
+                - pending
+              coverageLevel:
+                type: string
+              employeeContribution:
+                type: number
+                format: float
+              employerContribution:
+                type: number
+                format: float
+              effectiveDate:
+                type: string
+                format: date
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

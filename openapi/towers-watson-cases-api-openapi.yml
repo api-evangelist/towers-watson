@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  title: WTW HR Portal Benefits Cases API
+  description: Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.
+  version: 1.0.0
+  contact:
+    name: Willis Towers Watson
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+servers:
+- url: https://api.wtwco.com/hrportal/v1
+  description: WTW HR Portal API
+security:
+- bearerAuth: []
+tags:
+- name: Cases
+  description: HR service case management
+paths:
+  /cases:
+    get:
+      operationId: listCases
+      summary: List Cases
+      description: Returns a list of HR service cases.
+      tags:
+      - Cases
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - open
+          - pending
+          - resolved
+          - closed
+        description: Filter by case status
+      - name: category
+        in: query
+        schema:
+          type: string
+        description: Filter by case category
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Case list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseList'
+    post:
+      operationId: createCase
+      summary: Create Case
+      description: Submit a new HR service case or inquiry.
+      tags:
+      - Cases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseInput'
+      responses:
+        '201':
+          description: Case created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      summary: Get Case
+      description: Retrieve a specific HR service case.
+      tags:
+      - Cases
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Case details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCase
+      summary: Update Case
+      description: Update an existing HR service case.
+      tags:
+      - Cases
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseUpdate'
+      responses:
+        '200':
+          description: Case updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+components:
+  schemas:
+    CaseInput:
+      type: object
+      required:
+      - employeeId
+      - category
+      - subject
+      properties:
+        employeeId:
+          type: string
+        category:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+    CaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Case'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+        caseNumber:
+          type: string
+        employeeId:
+          type: string
+        category:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - pending
+          - resolved
+          - closed
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+        assignedTo:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+    CaseUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - open
+          - pending
+          - resolved
+          - closed
+        assignedTo:
+          type: string
+        notes:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

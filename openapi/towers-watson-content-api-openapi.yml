@@ -1,0 +1,230 @@
+openapi: 3.0.3
+info:
+  title: WTW HR Portal Benefits Content API
+  description: Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.
+  version: 1.0.0
+  contact:
+    name: Willis Towers Watson
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+servers:
+- url: https://api.wtwco.com/hrportal/v1
+  description: WTW HR Portal API
+security:
+- bearerAuth: []
+tags:
+- name: Content
+  description: HR content and communications management
+paths:
+  /content:
+    get:
+      operationId: listContent
+      summary: List Content
+      description: Returns a list of HR content articles and communications.
+      tags:
+      - Content
+      parameters:
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - article
+          - announcement
+          - policy
+          - form
+          - video
+        description: Filter by content type
+      - name: audience
+        in: query
+        schema:
+          type: string
+        description: Filter by target audience segment
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Content list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentList'
+    post:
+      operationId: createContent
+      summary: Create Content
+      description: Create a new HR content item or communication.
+      tags:
+      - Content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentInput'
+      responses:
+        '201':
+          description: Content created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /content/{contentId}:
+    get:
+      operationId: getContent
+      summary: Get Content
+      description: Retrieve a specific content item.
+      tags:
+      - Content
+      parameters:
+      - name: contentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Content item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContent
+      summary: Update Content
+      description: Update an existing content item.
+      tags:
+      - Content
+      parameters:
+      - name: contentId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentInput'
+      responses:
+        '200':
+          description: Content updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+components:
+  schemas:
+    Content:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - article
+          - announcement
+          - policy
+          - form
+          - video
+        body:
+          type: string
+        audience:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+          - archived
+        publishedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ContentInput:
+      type: object
+      required:
+      - title
+      - type
+      - body
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - article
+          - announcement
+          - policy
+          - form
+          - video
+        body:
+          type: string
+        audience:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+    ContentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

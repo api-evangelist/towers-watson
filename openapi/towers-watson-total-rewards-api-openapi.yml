@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: WTW HR Portal Benefits Total Rewards API
+  description: Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.
+  version: 1.0.0
+  contact:
+    name: Willis Towers Watson
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+servers:
+- url: https://api.wtwco.com/hrportal/v1
+  description: WTW HR Portal API
+security:
+- bearerAuth: []
+tags:
+- name: Total Rewards
+  description: Total compensation and rewards statements
+paths:
+  /employees/{employeeId}/total-rewards:
+    get:
+      operationId: getEmployeeTotalRewards
+      summary: Get Employee Total Rewards
+      description: Returns the total compensation and rewards summary for an employee.
+      tags:
+      - Total Rewards
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: year
+        in: query
+        schema:
+          type: integer
+        description: Plan year (defaults to current year)
+      responses:
+        '200':
+          description: Total rewards statement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalRewards'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    TotalRewards:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        planYear:
+          type: integer
+        baseSalary:
+          type: number
+          format: float
+        bonus:
+          type: number
+          format: float
+        equity:
+          type: number
+          format: float
+        benefits:
+          type: object
+          properties:
+            healthInsurance:
+              type: number
+              format: float
+            dental:
+              type: number
+              format: float
+            vision:
+              type: number
+              format: float
+            retirement:
+              type: number
+              format: float
+            other:
+              type: number
+              format: float
+        totalCompensation:
+          type: number
+          format: float
+        currency:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
