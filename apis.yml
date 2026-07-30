@@ -1,42 +1,71 @@
 aid: towers-watson
 url: https://raw.githubusercontent.com/api-evangelist/towers-watson/refs/heads/main/apis.yml
 apis:
-  - aid: towers-watson:wtw-hr-portal
-    name: WTW HR Portal
-    tags:
-      - Human Resources
-      - Benefits
-      - Employee Engagement
-      - HR Technology
-      - Total Rewards
-    humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
-    properties:
-      - url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
-        type: Documentation
-      - url: openapi/wtw-hr-portal-openapi.yml
-        type: OpenAPI
-    description: >-
-      Willis Towers Watson HR Portal delivers a personalized digital employee experience for total rewards and benefits
-      communication. The API enables HR teams to manage employee content, benefits enrollment, case management, and
-      workforce communications through a unified digital experience platform.
-  - aid: towers-watson:wtw-benefits-administration
-    name: WTW Benefits Administration
-    tags:
-      - Benefits
-      - Health Insurance
-      - Enrollment
-      - HR Technology
-      - Employee Benefits
-    humanURL: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
-    properties:
-      - url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
-        type: Documentation
-      - url: openapi/wtw-benefits-administration-openapi.yml
-        type: OpenAPI
-    description: >-
-      WTW Benefits Administration API provides programmatic access to employee benefits enrollment, eligibility
-      management, plan configuration, and benefits data for health, dental, vision, life, disability, and other employee
-      benefit programs.
+- aid: towers-watson:towers-watson-benefits-api
+  name: Towers Watson Benefits API
+  description: Benefits summary and enrollment status
+  humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  tags:
+  - Benefits
+  properties:
+  - type: OpenAPI
+    url: openapi/towers-watson-benefits-api-openapi.yml
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
+- aid: towers-watson:towers-watson-cases-api
+  name: Towers Watson Cases API
+  description: HR service case management
+  humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  tags:
+  - Cases
+  properties:
+  - type: OpenAPI
+    url: openapi/towers-watson-cases-api-openapi.yml
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
+- aid: towers-watson:towers-watson-content-api
+  name: Towers Watson Content API
+  description: HR content and communications management
+  humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/towers-watson-content-api-openapi.yml
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
+- aid: towers-watson:towers-watson-employees-api
+  name: Towers Watson Employees API
+  description: Employee profile and engagement management
+  humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/towers-watson-employees-api-openapi.yml
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
+- aid: towers-watson:towers-watson-total-rewards-api
+  name: Towers Watson Total Rewards API
+  description: Total compensation and rewards statements
+  humanURL: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  tags:
+  - Total Rewards
+  properties:
+  - type: OpenAPI
+    url: openapi/towers-watson-total-rewards-api-openapi.yml
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+  - type: Documentation
+    url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
 common:
   - type: AgenticAccess
     url: agentic-access/towers-watson-agentic-access.yml
@@ -68,7 +97,20 @@ tags:
   - Insurance Brokerage
   - Human Capital
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/towers-watson.png
 access: 3rd-Party
 created: '2026-03-24'
 modified: '2026-05-19'
