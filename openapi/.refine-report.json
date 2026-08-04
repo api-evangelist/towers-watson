@@ -1,0 +1,22 @@
+{
+  "provider": "towers-watson",
+  "sources": [
+    "towers-watson-benefits-api-openapi.yml",
+    "towers-watson-cases-api-openapi.yml",
+    "towers-watson-content-api-openapi.yml",
+    "towers-watson-employees-api-openapi.yml",
+    "towers-watson-total-rewards-api-openapi.yml"
+  ],
+  "outputs": [
+    "towers-watson-benefits-api-openapi.yml",
+    "towers-watson-cases-api-openapi.yml",
+    "towers-watson-content-api-openapi.yml",
+    "towers-watson-employees-api-openapi.yml",
+    "towers-watson-total-rewards-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

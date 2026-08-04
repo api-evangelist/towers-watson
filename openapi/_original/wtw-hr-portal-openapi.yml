@@ -1,0 +1,635 @@
+openapi: 3.0.3
+info:
+  title: WTW HR Portal
+  description: >-
+    Willis Towers Watson HR Portal API for delivering personalized digital employee
+    experiences. Enables HR teams to manage employee content, benefits communications,
+    total rewards statements, case management, and targeted workforce messaging.
+  version: 1.0.0
+  contact:
+    name: Willis Towers Watson
+    url: https://www.wtwco.com/en-us/solutions/products/hr-portal-software
+servers:
+  - url: https://api.wtwco.com/hrportal/v1
+    description: WTW HR Portal API
+tags:
+  - name: Employees
+    description: Employee profile and engagement management
+  - name: Content
+    description: HR content and communications management
+  - name: Benefits
+    description: Benefits summary and enrollment status
+  - name: Cases
+    description: HR service case management
+  - name: Total Rewards
+    description: Total compensation and rewards statements
+paths:
+  /employees:
+    get:
+      operationId: listEmployees
+      summary: List Employees
+      description: Returns a paginated list of employee records in the HR portal.
+      tags:
+        - Employees
+      parameters:
+        - name: department
+          in: query
+          schema:
+            type: string
+          description: Filter by department
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, inactive, leave]
+          description: Filter by employment status
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: Employee list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /employees/{employeeId}:
+    get:
+      operationId: getEmployee
+      summary: Get Employee
+      description: Retrieve HR portal profile for a specific employee.
+      tags:
+        - Employees
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Employee identifier
+      responses:
+        '200':
+          description: Employee profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /employees/{employeeId}/total-rewards:
+    get:
+      operationId: getEmployeeTotalRewards
+      summary: Get Employee Total Rewards
+      description: Returns the total compensation and rewards summary for an employee.
+      tags:
+        - Total Rewards
+        - Employees
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: query
+          schema:
+            type: integer
+          description: Plan year (defaults to current year)
+      responses:
+        '200':
+          description: Total rewards statement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalRewards'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /content:
+    get:
+      operationId: listContent
+      summary: List Content
+      description: Returns a list of HR content articles and communications.
+      tags:
+        - Content
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [article, announcement, policy, form, video]
+          description: Filter by content type
+        - name: audience
+          in: query
+          schema:
+            type: string
+          description: Filter by target audience segment
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Content list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentList'
+    post:
+      operationId: createContent
+      summary: Create Content
+      description: Create a new HR content item or communication.
+      tags:
+        - Content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentInput'
+      responses:
+        '201':
+          description: Content created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /content/{contentId}:
+    get:
+      operationId: getContent
+      summary: Get Content
+      description: Retrieve a specific content item.
+      tags:
+        - Content
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Content item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContent
+      summary: Update Content
+      description: Update an existing content item.
+      tags:
+        - Content
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentInput'
+      responses:
+        '200':
+          description: Content updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+  /cases:
+    get:
+      operationId: listCases
+      summary: List Cases
+      description: Returns a list of HR service cases.
+      tags:
+        - Cases
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [open, pending, resolved, closed]
+          description: Filter by case status
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: Filter by case category
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Case list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseList'
+    post:
+      operationId: createCase
+      summary: Create Case
+      description: Submit a new HR service case or inquiry.
+      tags:
+        - Cases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseInput'
+      responses:
+        '201':
+          description: Case created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      summary: Get Case
+      description: Retrieve a specific HR service case.
+      tags:
+        - Cases
+      parameters:
+        - name: caseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Case details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCase
+      summary: Update Case
+      description: Update an existing HR service case.
+      tags:
+        - Cases
+      parameters:
+        - name: caseId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaseUpdate'
+      responses:
+        '200':
+          description: Case updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+  /employees/{employeeId}/benefits:
+    get:
+      operationId: getEmployeeBenefits
+      summary: Get Employee Benefits
+      description: Returns current benefits enrollment summary for an employee.
+      tags:
+        - Benefits
+        - Employees
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: planYear
+          in: query
+          schema:
+            type: integer
+          description: Benefits plan year
+      responses:
+        '200':
+          description: Benefits summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitsSummary'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        employeeNumber:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        department:
+          type: string
+        jobTitle:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, leave]
+        hireDate:
+          type: string
+          format: date
+        manager:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+    EmployeeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    TotalRewards:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        planYear:
+          type: integer
+        baseSalary:
+          type: number
+          format: float
+        bonus:
+          type: number
+          format: float
+        equity:
+          type: number
+          format: float
+        benefits:
+          type: object
+          properties:
+            healthInsurance:
+              type: number
+              format: float
+            dental:
+              type: number
+              format: float
+            vision:
+              type: number
+              format: float
+            retirement:
+              type: number
+              format: float
+            other:
+              type: number
+              format: float
+        totalCompensation:
+          type: number
+          format: float
+        currency:
+          type: string
+    Content:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          enum: [article, announcement, policy, form, video]
+        body:
+          type: string
+        audience:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [draft, published, archived]
+        publishedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ContentInput:
+      type: object
+      required:
+        - title
+        - type
+        - body
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum: [article, announcement, policy, form, video]
+        body:
+          type: string
+        audience:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [draft, published]
+    ContentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+        caseNumber:
+          type: string
+        employeeId:
+          type: string
+        category:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, pending, resolved, closed]
+        priority:
+          type: string
+          enum: [low, medium, high, urgent]
+        assignedTo:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+    CaseInput:
+      type: object
+      required:
+        - employeeId
+        - category
+        - subject
+      properties:
+        employeeId:
+          type: string
+        category:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high, urgent]
+    CaseUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [open, pending, resolved, closed]
+        assignedTo:
+          type: string
+        notes:
+          type: string
+    CaseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Case'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    BenefitsSummary:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        planYear:
+          type: integer
+        enrollments:
+          type: array
+          items:
+            type: object
+            properties:
+              planType:
+                type: string
+                enum: [medical, dental, vision, life, disability, hsa, 401k, other]
+              planName:
+                type: string
+              status:
+                type: string
+                enum: [active, waived, pending]
+              coverageLevel:
+                type: string
+              employeeContribution:
+                type: number
+                format: float
+              employerContribution:
+                type: number
+                format: float
+              effectiveDate:
+                type: string
+                format: date
+security:
+  - bearerAuth: []
