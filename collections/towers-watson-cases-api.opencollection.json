@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WTW HR Portal Benefits Cases API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/cases",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by case status"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by case category"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of HR service cases."
+        },
+        {
+          "info": {
+            "name": "Create Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wtwco.com/hrportal/v1/cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new HR service case or inquiry."
+        },
+        {
+          "info": {
+            "name": "Get Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific HR service case."
+        },
+        {
+          "info": {
+            "name": "Update Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wtwco.com/hrportal/v1/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing HR service case."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

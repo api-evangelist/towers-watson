@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WTW HR Portal Benefits Employees API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees",
+            "params": [
+              {
+                "name": "department",
+                "value": "",
+                "type": "query",
+                "description": "Filter by department"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by employment status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of employee records in the HR portal."
+        },
+        {
+          "info": {
+            "name": "Get Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path",
+                "description": "Employee identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve HR portal profile for a specific employee."
+        },
+        {
+          "info": {
+            "name": "Get Employee Total Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees/:employeeId/total-rewards",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Plan year (defaults to current year)"
+              }
+            ]
+          },
+          "docs": "Returns the total compensation and rewards summary for an employee."
+        },
+        {
+          "info": {
+            "name": "Get Employee Benefits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees/:employeeId/benefits",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "planYear",
+                "value": "",
+                "type": "query",
+                "description": "Benefits plan year"
+              }
+            ]
+          },
+          "docs": "Returns current benefits enrollment summary for an employee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

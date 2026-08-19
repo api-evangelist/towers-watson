@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WTW HR Portal Benefits API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Employee Benefits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees/:employeeId/benefits",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "planYear",
+                "value": "",
+                "type": "query",
+                "description": "Benefits plan year"
+              }
+            ]
+          },
+          "docs": "Returns current benefits enrollment summary for an employee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

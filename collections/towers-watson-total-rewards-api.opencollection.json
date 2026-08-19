@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WTW HR Portal Benefits Total Rewards API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Total Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Employee Total Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wtwco.com/hrportal/v1/employees/:employeeId/total-rewards",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Plan year (defaults to current year)"
+              }
+            ]
+          },
+          "docs": "Returns the total compensation and rewards summary for an employee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
