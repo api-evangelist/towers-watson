@@ -115,17 +115,18 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/towers-watson.png
 access: 3rd-Party
 created: '2026-03-24'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Towers Watson was a global professional services company that provided risk management, actuarial, human capital, and
   investment consulting services before merging with Willis Group to form Willis Towers Watson (now WTW) in 2016. WTW
