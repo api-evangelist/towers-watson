@@ -1,7 +1,9 @@
 ---
 title: Employers set to rapidly expand AI use in health and
 url: https://www.globenewswire.com/news-release/2026/05/19/3297669/0/en/employers-set-to-rapidly-expand-ai-use-in-health-and-benefits-but-execution-gaps-remain-wtw-survey-finds.html
-date: '2026-05-25'
+published: '2026-05-19'
+date_basis: url-derived
+harvested: '2026-05-25'
 query: '"Towers Watson" press release artificial intelligence'
 position: 4
 source: serpapi-google

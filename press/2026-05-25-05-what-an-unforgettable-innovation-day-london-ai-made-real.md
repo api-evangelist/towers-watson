@@ -1,7 +1,9 @@
 ---
 title: What an unforgettable Innovation Day London | AI Made Real ...
 url: https://www.instagram.com/reel/DYg0Pl2jvUE/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Towers Watson" press release artificial intelligence'
 position: 5
 source: serpapi-google

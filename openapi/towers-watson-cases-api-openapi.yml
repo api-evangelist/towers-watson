@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: WTW HR Portal Benefits Cases API
+  title: WTW HR Portal Cases API
   description: Willis Towers Watson HR Portal API for delivering personalized digital employee experiences. Enables HR teams to manage employee content, benefits communications, total rewards statements, case management, and targeted workforce messaging.
   version: 1.0.0
   contact:
@@ -123,6 +123,20 @@ paths:
                 $ref: '#/components/schemas/Case'
 components:
   schemas:
+    CaseUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - open
+          - pending
+          - resolved
+          - closed
+        assignedTo:
+          type: string
+        notes:
+          type: string
     CaseInput:
       type: object
       required:
@@ -145,6 +159,13 @@ components:
           - medium
           - high
           - urgent
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     CaseList:
       type: object
       properties:
@@ -158,13 +179,6 @@ components:
           type: integer
         limit:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Case:
       type: object
       properties:
@@ -205,20 +219,6 @@ components:
         resolvedAt:
           type: string
           format: date-time
-    CaseUpdate:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - open
-          - pending
-          - resolved
-          - closed
-        assignedTo:
-          type: string
-        notes:
-          type: string
   responses:
     NotFound:
       description: Resource not found

@@ -1,11 +1,7 @@
 {
   "provider": "towers-watson",
   "sources": [
-    "towers-watson-benefits-api-openapi.yml",
-    "towers-watson-cases-api-openapi.yml",
-    "towers-watson-content-api-openapi.yml",
-    "towers-watson-employees-api-openapi.yml",
-    "towers-watson-total-rewards-api-openapi.yml"
+    "_original/wtw-hr-portal-openapi.yml"
   ],
   "outputs": [
     "towers-watson-benefits-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wtw-hr-portal-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "towers-watson-benefits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "towers-watson-cases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "towers-watson-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "towers-watson-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "towers-watson-total-rewards-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
