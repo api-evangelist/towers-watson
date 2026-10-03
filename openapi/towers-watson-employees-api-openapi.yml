@@ -135,6 +135,94 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        employeeNumber:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        department:
+          type: string
+        jobTitle:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - leave
+        hireDate:
+          type: string
+          format: date
+        manager:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+    EmployeeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    TotalRewards:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        planYear:
+          type: integer
+        baseSalary:
+          type: number
+          format: float
+        bonus:
+          type: number
+          format: float
+        equity:
+          type: number
+          format: float
+        benefits:
+          type: object
+          properties:
+            healthInsurance:
+              type: number
+              format: float
+            dental:
+              type: number
+              format: float
+            vision:
+              type: number
+              format: float
+            retirement:
+              type: number
+              format: float
+            other:
+              type: number
+              format: float
+        totalCompensation:
+          type: number
+          format: float
+        currency:
+          type: string
     BenefitsSummary:
       type: object
       properties:
@@ -184,103 +272,15 @@ components:
           type: string
         message:
           type: string
-    TotalRewards:
-      type: object
-      properties:
-        employeeId:
-          type: string
-        planYear:
-          type: integer
-        baseSalary:
-          type: number
-          format: float
-        bonus:
-          type: number
-          format: float
-        equity:
-          type: number
-          format: float
-        benefits:
-          type: object
-          properties:
-            healthInsurance:
-              type: number
-              format: float
-            dental:
-              type: number
-              format: float
-            vision:
-              type: number
-              format: float
-            retirement:
-              type: number
-              format: float
-            other:
-              type: number
-              format: float
-        totalCompensation:
-          type: number
-          format: float
-        currency:
-          type: string
-    EmployeeList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        employeeNumber:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        department:
-          type: string
-        jobTitle:
-          type: string
-        location:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - leave
-        hireDate:
-          type: string
-          format: date
-        manager:
-          type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string
   responses:
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

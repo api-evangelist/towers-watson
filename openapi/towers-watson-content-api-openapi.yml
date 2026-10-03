@@ -126,26 +126,6 @@ paths:
                 $ref: '#/components/schemas/Content'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ContentList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Content'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
     ContentInput:
       type: object
       required:
@@ -174,6 +154,13 @@ components:
           enum:
           - draft
           - published
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Content:
       type: object
       properties:
@@ -210,6 +197,19 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ContentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
   responses:
     BadRequest:
       description: Invalid request
