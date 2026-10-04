@@ -67,6 +67,9 @@ apis:
   - type: Documentation
     url: https://www.wtwco.com/en-us/services/benefits-delivery-and-administration
 common:
+  - type: CapabilityMap
+    url: capabilities/towers-watson-capability-edges.yml
+    name: Towers Watson Business Capability Map
   - type: AgenticAccess
     url: agentic-access/towers-watson-agentic-access.yml
   - type: DomainSecurity

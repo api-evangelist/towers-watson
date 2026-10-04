@@ -1,0 +1,52 @@
+slug: towers-watson
+provider: Towers Watson
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Benefits
+  spec_file: towers-watson-benefits-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.88
+  evidence: GET /employees/{employeeId}/benefits getEmployeeBenefits Get Employee Benefits; schema BenefitsSummary
+  reason: Retrieval of an employee's benefits summary within an HR portal is benefits administration,
+    a sub-capability of Compensation & Benefits Management.
+- tag: Total Rewards
+  spec_file: towers-watson-total-rewards-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.82
+  evidence: GET /employees/{employeeId}/total-rewards getEmployeeTotalRewards; schema TotalRewards
+  reason: Total rewards statements aggregate pay, bonus, equity and benefits for an employee, which is
+    Compensation & Benefits Management.
+- tag: Employees
+  spec_file: towers-watson-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.78
+  evidence: GET /employees listEmployees; GET /employees/{employeeId} getEmployee; schemas Employee, EmployeeList
+  reason: Read access to employee records (with rewards and benefits sub-resources) in an HR portal is
+    employee record keeping under HR Operations Management.
+- tag: Cases
+  spec_file: towers-watson-cases-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: 'POST /cases createCase; vendor doc: "manage employee content, benefits communications, total
+    rewards statements, case management"'
+  reason: Case CRUD in an HR portal context represents HR service delivery / employee enquiry casework,
+    which sits under HR Operations Management. Generic 'Case' schema leaves some ambiguity.
