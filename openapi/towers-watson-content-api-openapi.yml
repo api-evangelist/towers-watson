@@ -126,41 +126,6 @@ paths:
                 $ref: '#/components/schemas/Content'
 components:
   schemas:
-    ContentInput:
-      type: object
-      required:
-      - title
-      - type
-      - body
-      properties:
-        title:
-          type: string
-        type:
-          type: string
-          enum:
-          - article
-          - announcement
-          - policy
-          - form
-          - video
-        body:
-          type: string
-        audience:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - published
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Content:
       type: object
       properties:
@@ -197,6 +162,41 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ContentInput:
+      type: object
+      required:
+      - title
+      - type
+      - body
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - article
+          - announcement
+          - policy
+          - form
+          - video
+        body:
+          type: string
+        audience:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - published
     ContentList:
       type: object
       properties:
