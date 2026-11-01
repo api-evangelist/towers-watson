@@ -1,4 +1,4 @@
-# Towers Watson (towers-watson)
+# Towers Watson
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,82 +66,160 @@
 
 Towers Watson was a global professional services company that provided risk management, actuarial, human capital, and investment consulting services before merging with Willis Group to form Willis Towers Watson (now WTW) in 2016. WTW provides data-driven, insight-led solutions in risk, broking, HR consulting, and benefits administration across 140+ countries. WTW's software products include the HR Portal for employee benefits communication, benefits administration systems, compensation management tools, and actuarial modeling platforms.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/towers-watson/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/towers-watson/refs/heads/main/apis.yml)
+**Areas:** Human Resources · Risk Management · Benefits · Consulting · Actuarial · Insurance Brokerage · Human Capital · Employee Benefits
 
-## Scope
+## Towers Watson on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Towers Watson is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/towers-watson/](https://apis.io/providers/towers-watson/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Human Resources
-- Risk Management
-- Benefits
-- Consulting
-- Actuarial
-- Insurance Brokerage
-- Human Capital
+- [Towers Watson Benefits API](https://apis.io/apis/towers-watson/towers-watson-benefits-api/) — Benefits summary and enrollment status
+- [Towers Watson Cases API](https://apis.io/apis/towers-watson/towers-watson-cases-api/) — HR service case management
+- [Towers Watson Content API](https://apis.io/apis/towers-watson/towers-watson-content-api/) — HR content and communications management
+- [Towers Watson Employees API](https://apis.io/apis/towers-watson/towers-watson-employees-api/) — Employee profile and engagement management
+- [Towers Watson Total Rewards API](https://apis.io/apis/towers-watson/towers-watson-total-rewards-api/) — Total compensation and rewards statements
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-24
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### WTW HR Portal
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Willis Towers Watson HR Portal delivers a personalized digital employee experience for total rewards and benefits communication. The API enables HR teams to manage employee content, benefits enrollment, case management, and workforce communications through a unified digital experience platform.
+- [Towers Watson Agentic Access](https://apis.io/agentic-access/towers-watson/towers-watson-agentic-access/)
 
-- **Human URL:** [https://www.wtwco.com/en-us/solutions/products/hr-portal-software](https://www.wtwco.com/en-us/solutions/products/hr-portal-software)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Human Resources
-- Benefits
-- Employee Engagement
-- HR Technology
-- Total Rewards
+- [Employee](https://apis.io/schemas/towers-watson/wtw-employee/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://www.wtwco.com/en-us/solutions/products/hr-portal-software)
-- [OpenAPI](openapi/wtw-hr-portal-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wtw-hr-portal.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wtw-hr-portal.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### WTW Benefits Administration
+- [Wtw Employee Structure](https://apis.io/json-structure/towers-watson/wtw-employee-structure/)
 
-WTW Benefits Administration API provides programmatic access to employee benefits enrollment, eligibility management, plan configuration, and benefits data for health, dental, vision, life, disability, and other employee benefit programs.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.wtwco.com/en-us/services/benefits-delivery-and-administration](https://www.wtwco.com/en-us/services/benefits-delivery-and-administration)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Towers Watson Context](https://apis.io/jsonld/towers-watson/towers-watson-context/)
 
-- Benefits
-- Health Insurance
-- Enrollment
-- HR Technology
-- Employee Benefits
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://www.wtwco.com/en-us/services/benefits-delivery-and-administration)
-- [OpenAPI](openapi/wtw-benefits-administration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Towers Watson / WTW Vocabulary](https://apis.io/vocabularies/towers-watson/towers-watson-vocabulary/)
 
-## Common Properties
+#### Examples (1)
 
-- [GitHub Organization](https://github.com/WTW-IM)
+Example requests and responses.
+
+- [Wtw Get Employee Total Rewards Example](https://apis.io/examples/towers-watson/wtw-get-employee-total-rewards-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [WTW HR Portal Benefits API](https://apis.io/collections/towers-watson/open-towers-watson-benefits-api/)
+- [WTW HR Portal Benefits Cases API](https://apis.io/collections/towers-watson/open-towers-watson-cases-api/)
+- [WTW HR Portal Benefits Content API](https://apis.io/collections/towers-watson/open-towers-watson-content-api/)
+- [WTW HR Portal Benefits Employees API](https://apis.io/collections/towers-watson/open-towers-watson-employees-api/)
+- [WTW HR Portal Benefits Total Rewards API](https://apis.io/collections/towers-watson/open-towers-watson-total-rewards-api/)
+- [WTW HR Portal](https://apis.io/collections/towers-watson/open-wtw-hr-portal/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Towers Watson — jsonschema rules](https://apis.io/rules/towers-watson/towers-watson-jsonschema-spectral-rules/)
+- [Towers Watson API Rules](https://apis.io/rules/towers-watson/towers-watson-spectral-rules/)
+- [Towers Watson — wtw rules](https://apis.io/rules/towers-watson/wtw-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Towers Watson Authentication](https://apis.io/security/towers-watson/towers-watson-authentication/)
+- [Towers Watson Domain Security](https://apis.io/security/towers-watson/towers-watson-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Towers Watson Plans Pricing](https://apis.io/plans/towers-watson/towers-watson-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Towers Watson Rate Limits](https://apis.io/rate-limits/towers-watson/towers-watson-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Towers Watson Finops](https://apis.io/finops/towers-watson/towers-watson-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.wtwco.com/)
-- [Developer](https://www.wtwco.com/en-us/solutions/products)
-- [LinkedIn](https://www.linkedin.com/company/wtw)
-- [Rules](rules/wtw-spectral-rules.yml)
-- [Vocabulary](vocabulary/towers-watson-vocabulary.yml)
-- [J S O N L D Context](json-ld/towers-watson-context.jsonld)
+- [GitHub](https://github.com/WTW-IM)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 52.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 14.9** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/towers-watson/](https://apis.io/providers/towers-watson/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Towers Watson: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/towers-watson/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
